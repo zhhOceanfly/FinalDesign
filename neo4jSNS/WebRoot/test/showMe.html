@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>个人展示</title>
+	<link type="text/css" href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+		<script src="../bootstrap/js/jQuery.js"></script>
+		<script src="../bootstrap/js/bootstrap.js"></script>
+  <style type="text/css">
+  body {
+	margin: 0 auto;
+	padding: 0;
+	background: url(./images/bg.jpg) no-repeat center top #310b28;
+}
+p {
+	color: #DDBF5E;
+}
+tr, td {
+	color: #4EC42C;
+}
+h3, h2, hr {
+	color: red;
+}
+.jumbotron {
+	padding-top: 5px;
+	background-color: #310B28;
+	padding-bottom: 0px;
+}
+</style>
+</head>
+  <body>
+	<div class="jumbotron">
+		<div class="container">
+		    <h2>Hello, Oceanfly</h2>
+		    <p>this is your information.<br/>
+		    if you want to communicate with more people.</p>
+		    <p><a href="update.html" class="btn btn-primary btn-lg" role="button">编辑资料 &raquo;</a></p>
+		</div>
+	</div>
+	<hr />
+    <div class="container">
+    	<div class="row">
+	        <div class="col-md-3">
+	            <h3>Friends</h3>
+	            <p>list your recent five friends here.</p>
+	            <table  class="table table-hover table-condensed">
+	            <tr>
+					<td align="center">
+						<strong>学号</strong>
+					</td>
+					<td align="center">
+						<strong>姓名</strong>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<c:out value="${student.stId}" />
+					</td>
+					<td>
+						<c:out value="${student.stName}" />
+					</td>
+				</tr>
+            </table>
+	            <p><a class="btn btn-default btn-lg" role="button">View more &raquo;</a></p>
+	        </div>
+	        <div class="col-md-4">
+	            <h3>Album</h3>
+	            <p>list your recent five photo here.</p>
+	            <p><a class="btn btn-default btn-lg" role="button">View more &raquo;</a></p>
+	        </div>
+	        <div class="col-md-5">
+	            <h3>Blog</h3>
+	            <p>list your recent five blog here.</p>
+	            
+	            <p><a class="btn btn-default btn-lg" role="button">View more &raquo;</a></p>
+	        </div>
+        </div>
+    </div>
+</div>
+  </body>
+</html>

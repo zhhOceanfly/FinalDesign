@@ -1,0 +1,28 @@
+http://127.0.0.1:8080/neo4jSNS/login.jsp 登录页面　{
+	验证码image.jsp
+}
+登录成功跳转main.jsp
+main.jsp  {
+	common/head.jsp 主界面
+	mainpage=common/default.jsp 页面头部
+}
+common/head.jsp {
+	pre?---servlet---studentAdd.jsp
+	servlet---displaystudent.jsp {
+		stdelete---DeleteServlet
+		pre?method=update...---UpdataServlet
+	}
+	pre?---servlet---updatepwd.jsp
+	logout.jsp
+}
+
+com.dw.controll --- servlet
+com.dw.dao --- 方法接口
+com.dw.dao.impl --- 方法实现 --- 用于servlet调用
+com.dw.filter --- 过滤器
+com.dw.model --- 建模
+com.dw.util --- 工具类
+
+db.properties --- 数据库配置文件
+
+web.xml --- 最重要的配置文件

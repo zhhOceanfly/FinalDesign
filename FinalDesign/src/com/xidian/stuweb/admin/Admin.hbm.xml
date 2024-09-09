@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+	<class name="com.xidian.stuweb.admin.Admin" table="admin">
+	<!-- 定义主键为自增长 -->
+		<id name="aid" column="aid">
+			<generator class="native"></generator>
+		</id>
+		<property name="adminname" length="20" ></property>
+		<property name="password" length="20"></property>
+		<!--取消延迟加载  -->
+		<set name="notices" lazy="false">
+			<key column="aid"></key>
+			<one-to-many class="com.xidian.stuweb.notice.Notice"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>   
+ 
+

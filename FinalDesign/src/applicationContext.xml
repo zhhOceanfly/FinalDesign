@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 没有Hibernate配置文件spring整合hibernate -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="driverClass" value="${jdbc.driver}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 将连接池注入到LocalSessionFactoryBean中来管理连接池,相当于可以创建sessionFactory -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- dataSource值不能改变是上面那个类中的属性并且有set方法 -->
+		<!-- 配置hibernate属性 -->
+			<property name="hibernateProperties"> <!-- setDataSource中参数的类型是Properties,所以下面配置的时候就要按照这种类型的来配 -->
+				<props>
+					<prop key="hibernate.connection.dialect">org.hibernate.dialect.MySQLDialect</prop>
+					<!-- <prop key="hibernate.show_sql">true</prop> 
+					<prop key="hibernate.format_sql">true</prop>  -->
+					<prop key="hibernate.hbm2ddl.auto">update</prop>
+					<prop key="hibernate.connection.isolation">4</prop>
+					<prop key="current_session_context_class">thread</prop>
+				</props>
+			 </property>
+			 
+			 <property name="mappingResources">
+				<list>
+					<value>com/xidian/stuweb/admin/Admin.hbm.xml</value>
+					<value>com/xidian/stuweb/user/User.hbm.xml</value>
+					<value>com/xidian/stuweb/notice/Notice.hbm.xml</value>
+					<value>com/xidian/stuweb/blog/Blog.hbm.xml</value>
+				</list>
+			</property> 
+	</bean>
+	
+	<!-- 注解需要sessionFactory得到session然后才能开启事务，所以将sessionFactory注入到事务中； -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 注解开启事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<bean id="loginAction" class="com.xidian.stuweb.test.TestAction" scope="prototype"></bean>
+	
+	<bean id="indexAction" class="com.xidian.stuweb.index.IndexAction" scope="prototype">
+		<property name="noticeService" ref="noticeService"></property>
+	</bean>
+	
+	<bean id="adminAction" class="com.xidian.stuweb.admin.AdminAction" scope="prototype">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+	<bean id="adminService" class="com.xidian.stuweb.admin.AdminService" >
+		<property name="adminDao" ref="adminDao"></property>
+	</bean>
+		
+	<bean id="adminDao" class="com.xidian.stuweb.admin.AdminDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="userAction" class="com.xidian.stuweb.user.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+		<property name="noticeService" ref="noticeService"></property>
+	</bean>
+	<bean id="userService" class="com.xidian.stuweb.user.UserService">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="userDao" class="com.xidian.stuweb.user.UserDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	
+	<bean id="noticeAction" class="com.xidian.stuweb.notice.NoticeAction" scope="prototype">
+		<property name="noticeService" ref="noticeService"></property>
+		<property name="adminService" ref="adminService" ></property>
+	</bean>
+	<bean id="noticeService" class="com.xidian.stuweb.notice.NoticeService">
+		<property name="noticeDao" ref="noticeDao"></property>
+	</bean>
+	<bean id="noticeDao" class="com.xidian.stuweb.notice.NoticeDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id = "blogAction" class="com.xidian.stuweb.blog.BlogAction" scope="prototype">
+		<property name="blogService" ref="blogService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	
+	<bean id = "blogService" class="com.xidian.stuweb.blog.BlogService">
+		<property name="blogDao" ref="blogDao"></property>
+	</bean>
+	
+	<bean id = "blogDao" class="com.xidian.stuweb.blog.BlogDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	
+</beans>

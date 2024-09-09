@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.xidian.stuweb.notice.Notice" table="notice">
+		<id name="nid">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="title" length="60"></property>
+		<property name="content"></property>
+		<property name="date"></property>
+		<!--定义通知表和管理员表为多对一的关系，定义外键为aid，取消延迟加载  -->
+		<many-to-one name="admin" class="com.xidian.stuweb.admin.Admin" column="aid" lazy="false"></many-to-one>
+	</class>
+	
+
+</hibernate-mapping>

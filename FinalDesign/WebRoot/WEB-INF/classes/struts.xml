@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="false" />
+
+    <package name="default" namespace="/" extends="struts-default">
+    
+    	<action name="index" class="indexAction">
+    		<result name="indexSuccess">/WEB-INF/jsp/index.jsp</result>
+    	</action>
+    
+		
+		<action name="admin_*" class="adminAction" method="{1}">
+			<result name="loginPageSuccess">/WEB-INF/jsp/admin/adminLogin.jsp</result>
+			<result name="loginSuccess">/WEB-INF/jsp/admin/index.jsp</result>
+			<result name="loginInput">/WEB-INF/jsp/admin/adminLogin.jsp</result>
+			<result name="pubInfoPageSuccess">/WEB-INF/jsp/admin/pubinfo.jsp</result>
+			<result name="exitAdminSuccess" type="redirectAction">index</result>
+		</action>
+		
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="findByPageSuccess">/WEB-INF/jsp/admin/showUser.jsp</result>
+			<result name="findByUidSuccess">/WEB-INF/jsp/admin/edituser.jsp</result>
+			<!-- <result name="updateUserSuccess" type="redirectAction">user_findByPage?page=1</result> -->
+			<result name="msgSuccess">/WEB-INF/jsp/admin/msg.jsp</result>
+			<!-- <result name="deleteByUidSuccess" type="redirectAction">user_findByPage?page=1</result> -->
+			<!-- <result name="addUserSuccess" type="redirectAction">user_findByPage?page=1</result> -->
+			<result name="addUserPageSuccess">/WEB-INF/jsp/admin/adduser.jsp</result>
+			<result name="findByStuidSuccess">/WEB-INF/jsp/admin/usershow.jsp</result>
+			<result name="findByStuidInput">/WEB-INF/jsp/admin/usershow.jsp</result>
+			<result name="loginPageSuccess">/WEB-INF/jsp/login.jsp</result>
+			<result name="loginInput">/WEB-INF/jsp/login.jsp</result>
+			<result name="loginSuccess">/WEB-INF/jsp/userindex.jsp</result>
+		</action>
+		
+		<action name="notice_*" class="noticeAction" method="{1}">
+			<result name="input">/MyJsp.jsp</result>
+			<!-- <result name="saveNoticeSuccess">/WEB-INF/jsp/admin/index.jsp</result> -->
+			<result name="msgSuccess">/WEB-INF/jsp/admin/msg.jsp</result>
+			<result name="findByNidSuccess">/WEB-INF/jsp/noticeshow.jsp</result>
+			<result name="noticeAdminPageSuccess">/WEB-INF/jsp/admin/index.jsp</result>
+			<!-- <result name="deleteByNidSuccess">/WEB-INF/jsp/admin/index.jsp</result> -->
+			<result name="noticeUserPageSuccess">WEB-INF/jsp/userindex.jsp</result>
+		
+		</action>
+		
+		<action name="blog_*" class="blogAction" method="{1}">
+			<result name="blogPageSuccess">/WEB-INF/jsp/blog.jsp</result>
+			<result name="saveBlogSuccess">/WEB-INF/jsp/userindex.jsp</result>
+			<result name="findAllBlogSuccess">/WEB-INF/jsp/admin/blogs.jsp</result>
+			
+		</action>
+		
+		
+		<action name="login_*" class="loginAction" method="{1}">
+			<result name="loginSuccess">/WEB-INF/jsp/admin/index.jsp</result>
+			<result name = "indexSuccess">/WEB-INF/jsp/index.jsp</result>
+			<result name ="editSuccess">/MyJsp.jsp</result>
+		</action>
+		
+    </package>
+
+
+</struts>

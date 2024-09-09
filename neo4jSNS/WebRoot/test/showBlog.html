@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  		<base href="<%=basePath%>">
+		<title>Oceanfly Blog</title>
+		<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+		<script src="../bootstrap/js/jQuery.js"></script>
+		<script src="../bootstrap/js/bootstrap.js"></script>
+   <style type="text/css">
+body {
+	margin: 0 auto;
+	padding: 0;
+	background: url(../images/bg.jpg) no-repeat center top #310b28;
+}
+img {
+	width: 100%;
+	height: 120px;
+}
+a {
+	color: #D035BE;
+}
+.col-md-10{
+	background-color:#F85C1E; 
+	width:600px; 
+	margin: 0px auto; 
+	padding: 10px;
+}
+</style>
+<script type="text/javascript">
+	function btnAction(){
+	
+	}
+	  function setDateTime() {
+		var date = new Date();
+		var day = date.getDay();
+		var week;
+		switch (day) {
+		case 0:
+			week = "星期日";
+			break;
+		case 1:
+			week = "星期一";
+			break;
+		case 2:
+			week = "星期二";
+			break;
+		case 3:
+			week = "星期三";
+			break;
+		case 4:
+			week = "星期四";
+			break;
+		case 5:
+			week = "星期五";
+			break;
+		case 6:
+			week = "星期六";
+			break;
+		}
+		var today = date.getFullYear() + "年" + (date.getMonth() + 1) + "月"
+				+ date.getDate() + "日  " + week + " " + date.getHours() + ":"
+				+ date.getMinutes() + ":" + date.getSeconds();
+		document.getElementById("today").innerHTML = today;
+	}
+	window.setInterval("setDateTime()", 1000);
+</script>
+  </head>
+  <body>
+  	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="../images/logo6.png" alt="">
+      
+      <div style="position:absolute; z-index:2; right:10px; top:100px">
+						欢迎：
+						<font color="red">Oceanfly</font>&nbsp;&nbsp;&nbsp;
+						 <i class="icon-time"></i>&nbsp;&nbsp;<font id="today"></font>
+						</div>
+    </div>
+    <div class="item">
+      <img src="../images/logo7.jpg" alt="">
+    </div>
+  </div>
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="navbar">
+					<div class="navbar-inner">
+					   <a class="brand" href="head.html"><i class="icon-home"></i>&nbsp;首页</a>
+						<ul class="nav">
+							<li><a href="./showMe.html"><i class="icon-user"></i>&nbsp;个人展示 </a></li>
+							<li><a href="showAllStudents"><i class="icon-heart"></i>&nbsp;我的好友</a></li>
+							<li><a href="showPhoto"><i class="icon-picture"></i>&nbsp;云相册</a></li>
+							<li><a href="deepSearch"><i class="icon-search"></i>&nbsp;深度搜索</a></li>
+							<!-- <li><a href="pre?method=preupdatetepwd"><i class="icon-cog"></i>&nbsp;修改密码</a></li> -->
+							<li><a onclick="check()"><i class="icon-off"></i>&nbsp;退出登录</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+<div style="line-height:30px; background-color:#310B28; height:300px; width:150px; float:left; padding:30px" >
+<p class="bg-danger"><a href="http://222.25.176.4/" target="_blank" style="color:#D035BE; text-decoration: none;">实验选课系统</a><br /></p>
+<p class="bg-success"><a href="http://jwxt.xidian.edu.cn" target="_blank" style="color:#D035BE; text-decoration: none;">URP综合教务系统</a><br /></p>
+<p class="bg-info"><a href="http://www.three-thinking.com/" target="_blank" style="color:#D035BE; text-decoration: none;">三思首页</a><br /></p>
+<p class="bg-warning"><a href="http://jwc.xidian.edu.cn/" target="_blank" style="color:#D035BE; text-decoration: none;">西电教务处系统</a><br /></p>     
+<p class="bg-warning"><a href="http://123.xidian.edu.cn/" target="_blank" style="color:#D035BE; text-decoration: none;">西电123导航</a><br /></p>     
+<p class="bg-warning"><a href="http://job.xidian.edu.cn/index.html" target="_blank" style="color:#D035BE; text-decoration: none;">西电就业信息网</a><br /></p>     
+</div>
+    <div id="bigdiv" style="width:60%; float:left; padding:10px">
+		<div class="jumbotron">
+		    <div class="container" style="padding-left: 40px">
+		    	<center style="color:#DDBF5E; text-align:left">
+			        <h3 style="color:red">Hello, Oceanfly!</h3>
+			        <p>Oceanfly是一个开放的空间，一直伸往未知的领域。</p>
+		        </center>
+		    </div>
+		</div>
+		<div class="container">
+		    <div class="row">
+		        <div class="col-md-10" >
+		        <table class="table table-condensed" style="width:100%">
+		            <caption style="color:red"><i class="icon-user"></i>${friend name}</caption>
+		            <tr><td colspan="2">
+		            	<p style="color:#000"><i class="icon-tag"></i>${blog}&nbsp;Includes over 250 glyphs in font format from the Glyphicon Halflings set. Glyphicons Halflings are normally not available for free, but their creator has made them available for Bootstrap free of cost. As a thank you, we only ask that you include a link back to Glyphicons whenever possible.</p>
+		            </td></tr>
+		            <tr>
+		            	<td align="left">
+		            		<i class="icon-thumbs-up"></i><i style="color:#DDBF5E">${goodCounts}</i>
+		            	</td>
+		            	<td align="right"><i class="icon-time"></i><i style="color:#DDBF5E">${publishtime}</i></td>
+		            </tr>
+		            <!-- <tr><td><i class="icon-user"></i>${friend name}&nbsp;:&nbsp;${comment}</td></tr> -->
+		            <tr><td colspan="2">
+		            	<form action="comBlog" method="post" style="height:0px">
+		            		<i class="icon-pencil"></i><input type="text" name="" value="" style="width:500px;font-size:12px"/>
+		            		<input type="submit" name="" value="发送" style="font-family: 隶书; font-size: 14pt; background-color:#EFE2DF; border: medium none rgb(128,0,128)"/>
+		            	</form>
+		            </td></tr>
+		            <c:forEach items="${list}" var="comment">
+					<tr style="border:1px solid #000">
+						<td colspan="2">
+							<p style="color:#000">
+								<i class="icon-time"></i><i style="color:#DDBF5E">${publishtime}</i>
+								<i class="icon-user"></i>&nbsp;:&nbsp;<c:out value="${comment.comTitle}" />
+							</p>
+						</td>
+					</tr>
+					</c:forEach>
+		        </table>
+		        </div>
+		        <br/>
+		    </div>
+		</div>
+	</div>
+  </body>
+</html>
